@@ -252,8 +252,9 @@ class Figure(Panel):
     """
     def __init__(self, width, height, *svgelements):
         Panel.__init__(self, *svgelements)
-        self.width = Unit(width)
-        self.height = Unit(height)
+        # according to SVG specifications, the viexbox contains of integers
+        self.width = int(''.join(i for i in width if i.isdigit())) # Unit(width)
+        self.height = int(''.join(i for i in height if i.isdigit())) # Unit(height)
 
     def save(self, fname):
         """Save figure to SVG file.
